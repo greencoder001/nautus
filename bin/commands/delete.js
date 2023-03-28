@@ -6,7 +6,7 @@ module.exports = [async (args) => {
 
     if (!isProjectInitialized()) return console.log(chalk.red('Error: Directory isn\'t a project. Please use nautus create first!'))
 
-    fs.removeSync(path.join(process.cwd(), '.nautus'))
+    fs.removeSync(path.join(process.cwd(), 'nautus'))
 
     console.log(chalk.green('Deleted Nautus project successfully'))
 

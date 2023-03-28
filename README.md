@@ -13,3 +13,8 @@
 - [ ] Generate Changelogs
 - [ ] Format your code
 - [ ] Refactor your code
+- [ ] Mange .ignore files
+- [ ] Test APIs
+- [ ] Creating docs
+- [ ] Choose a license
+- [ ] Lint your code

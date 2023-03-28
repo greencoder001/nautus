@@ -4,13 +4,14 @@ module.exports = async () => {
     const fs = require('fs')
     const os = require('os')
     const path = require('path')
-    const dir = path.join(process.cwd(), '.nautus')
+    const dir = path.join(process.cwd(), 'nautus')
 
     fs.mkdirSync(dir)
+    fs.mkdirSync(path.join(dir, '.internal'))
     if (fs.existsSync(path.join(os.homedir(), '.nautusme'))) {
-        fs.copyFileSync(path.join(os.homedir(), '.nautusme'), path.join(dir, '.nautusme'))
+        fs.copyFileSync(path.join(os.homedir(), '.nautusme'), path.join(dir, '.internal', '.nautusme'))
     } else {
-        fs.writeFileSync(path.join(dir, '.nautusme'), JSON.stringify({
+        fs.writeFileSync(path.join(dir, '.internal','.nautusme'), JSON.stringify({
             realName: '',
             githubUsername: '',
             name: '',

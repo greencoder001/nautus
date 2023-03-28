@@ -7,4 +7,6 @@ module.exports = [async (args) => {
 
     await initializeProject()
 
+    console.log(chalk.green(`Project created successfully. Use ${chalk.cyan('nautus')} to get recommendations on what to do next!`))
+
 }, 'create', 'Creates a nautus project in the current directory (can be in use)']

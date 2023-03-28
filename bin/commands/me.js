@@ -7,7 +7,7 @@ module.exports = [async (args) => {
     const local = args.join(' ').includes('--local')
     if (local && !ipi()) return console.log(chalk.red('Error: Please create a project first'))
     if (local) console.log(chalk.gray('[INFO] This will only be applied to current project'))
-    const savepath = local ? path.join(process.cwd(), '.nautus', '.nautusme') : path.join(require('os').homedir(), '.natusme')
+    const savepath = local ? path.join(process.cwd(), 'nautus', '.nautusme') : path.join(require('os').homedir(), '.nautusme')
 
     console.log(chalk.gray('[INFO] This will be used to complete boilerplate code. If you don\'t want to answer a question just leave it blank'))
 
