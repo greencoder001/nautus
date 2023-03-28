@@ -1,0 +1,25 @@
+{
+  "name": "reaf",
+  "version": "0.0.0",
+  "description": "Your one & only ultimate software development tool 🪸",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greencoder001/reaf.git"
+  },
+  "keywords": [
+    "reef",
+    "reaf",
+    "software",
+    "development"
+  ],
+  "author": "greencoder001",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/greencoder001/reaf/issues"
+  },
+  "homepage": "https://github.com/greencoder001/reaf#readme"
+}
