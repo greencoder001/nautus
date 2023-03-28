@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/greencoder001/nautus#readme",
   "dependencies": {
-    "chalk": "^4.1.2"
+    "chalk": "^4.1.2",
+    "fs-extra": "^11.1.1",
+    "readline-sync": "^1.4.10"
   }
 }

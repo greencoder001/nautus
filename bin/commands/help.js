@@ -18,5 +18,6 @@ module.exports = [async (args) => {
         console.log(fillUp(usage, 30) + chalk.grey(fillUp(explanation, 66)))
     }
     console.log('\n\n' + chalk.bgCyan(chalk.white('                                           What\'s next                                          ')))
-    console.log(`Create a nautus project using ${chalk.green('nautus create')}\n\n`)
+    console.log(`Create a nautus project using ${chalk.green('nautus create')}`)
+    console.log(`Complete your info using ${chalk.green('nautus me')}\n\n`)
 }, 'help', 'Shows this help menu']
