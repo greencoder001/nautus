@@ -15,8 +15,8 @@ module.exports = [async (args) => {
         chalk.cyan("   ░ ░░   ░ ▒░░ ░   ▒▒ ░░▒░ ░ ░     ░    ░░▒░ ░ ░ ░ ░▒  ░ ░  ") + chalk.redBright("⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣀⠀⠀⠀⠀⠸⣿⣷⣿⣿⣿⣯⣉⡉⠉⠙⢷⡄⠀⠀\n") +
         chalk.cyan("   ░   ░ ░   ░   ▒   ░░░ ░ ░   ░       ░░░ ░ ░ ░  ░  ░       ") + chalk.redBright("⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⣷⣦⣄⣠⣾⣿⠋⠀⠀⠀⠈⣩⡿⠷⣤⠀⠀⠀⠀\n") +
         chalk.cyan("           ░       ░     ░                 ░           ░     ") + chalk.redBright("⠀⠀⠀⠀⠀⠀⠶⠶⣶⡶⠟⠛⠛⢿⣿⡿⠁⠀⠀⠀⠀⣰⡟⠁⠀⠀⠀⠀⠀⠀\n") +
-        chalk.cyan("                                                             ") + chalk.redBright("⠀⠀⠀⠀⠀⠀⠀⠀⠹⠇⠀⠀⠀⣼⣿⠃⠀⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⠀⠀⠀\n") +
         chalk.cyan("     Your one & only ultimate software development tool      ") + chalk.redBright("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n") +
+        chalk.cyan("                                                             ") + chalk.redBright("⠀⠀⠀⠀⠀⠀⠀⠀⠹⠇⠀⠀⠀⣼⣿⠃⠀⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⠀⠀⠀\n") +
         chalk.cyan("                                                             ") + chalk.redBright("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n")
     )
     console.log('')
