@@ -1,5 +1,5 @@
 {
-  "name": "riff",
+  "name": "nautus",
   "version": "0.0.0",
   "description": "Your one & only ultimate software development tool 🪸",
   "main": "main.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/greencoder001/reaf.git"
+    "url": "git+https://github.com/greencoder001/nautus.git"
   },
   "keywords": [
     "reef",
@@ -19,7 +19,7 @@
   "author": "greencoder001",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/greencoder001/reaf/issues"
+    "url": "https://github.com/greencoder001/nautus/issues"
   },
-  "homepage": "https://github.com/greencoder001/reaf#readme"
+  "homepage": "https://github.com/greencoder001/nautus#readme"
 }
