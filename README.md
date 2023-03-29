@@ -18,3 +18,20 @@
 - [ ] Creating docs
 - [ ] Choose a license
 - [ ] Lint your code
+
+# Development Status
+**Commands that have fucntionality:**
+- [X] @main
+- [X] build
+- [X] create
+- [X] delete
+- [X] exec
+- [X] help
+- [ ] kelp
+- [ ] lint
+- [X] me
+- [X] release
+- [X] run
+- [ ] tank
+- [X] test
+- [ ] use

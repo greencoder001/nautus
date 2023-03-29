@@ -5,7 +5,7 @@ const args = argv.slice(1)
 const fs = require('fs')
 const path = require('path')
 
-for (registeredCMD of fs.readdirSync(path.join(__dirname, 'commands'))) {
+for (const registeredCMD of fs.readdirSync(path.join(__dirname, 'commands'))) {
     const cmdName = registeredCMD.substring(0, registeredCMD.length - 3)
     if (cmd.toLowerCase() === cmdName.toLowerCase()) {
         const com = require(path.join(__dirname, 'commands', registeredCMD))[0]
