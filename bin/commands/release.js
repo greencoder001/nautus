@@ -17,4 +17,4 @@ module.exports = [async (args) => {
             await exec('Release')
         }
     }
-}, 'release [major|minor|patch] [--help]', 'Releases your code']
+}, 'release [type] [--help]', 'Releases your code']
