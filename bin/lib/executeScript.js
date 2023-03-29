@@ -11,7 +11,7 @@ const runScript = async (scriptName) => {
     const cmd = command => {
         return new Promise((resolve, reject) => {
             if (typeof command !== 'string') throw new TypeError('command must be a string')
-            exec(command, (error, stdout, stderr) => {
+            exec('cd ' + process.cwd() + ';' + command, (error, stdout, stderr) => {
                 if (error) {
                     return reject([error.code, (stdout || '') + (stderr || '')])
                 }
@@ -46,7 +46,9 @@ const runScript = async (scriptName) => {
 
     const spwn = (comd, args) => {
         return new Promise((resolve, reject) => {
-            const prcss = spawn(comd, args)
+            const prcss = spawn(comd, args, {
+                cwd: process.cwd()
+            })
 
             prcss.stdout.on('data', (data) => {
                 console.log(data.toString())
@@ -64,7 +66,13 @@ const runScript = async (scriptName) => {
         })
     }
 
-    await script(cmd, os, info, warn, error, exit, runScript, spwn)
+    await script(cmd, os, info, warn, error, exit, runScript, spwn, {
+        chalk,
+        fse: fs,
+        fs: require('fs'),
+        path: path,
+        axios: require('axios')
+    })
 }
 
 module.exports = runScript

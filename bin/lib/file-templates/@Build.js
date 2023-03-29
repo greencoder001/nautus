@@ -10,8 +10,25 @@ error(what: any): void - Displays an error in the console & exits with code 1
 exit(code: number = 0): void - Exits with a code (default: 0)
 async script(name: string): Promise<void> - Runs another script and returns after it has run. Define it by creating a @ScriptName.js file in this folder and run it by using await script('ScriptName')
 async spawn(command: string): Promise<exitCode> - Executes a command and displays the output in the shell
+
+modules: A useful collection of some modules, because it's bad practice to use require
+Over time we might add more (jsut check using info(modules)), but right now it's:
+- modules.fs
+- modules.fse
+- modules.path
+- modules.chalk
+- modules.axios
 */
 
-module.exports = async (cmd, os, info, warn, error, exit, script, spawn) => {
+module.exports = async (cmd, os, info, warn, error, exit, script, spawn, modules) => {
+    /*
+        Here you can be creative. If you want to build your project using pkg you could use:
+        exit(await spawn('pkg', ['.']))
+
+        But maybe you need to move a file before:
+        await cmd('mv x.js y.js')
+        exit(await spawn('pkg', ['.']))
+    */
+
     return error('No build script defined, please edit ./nautus/scripts/@Build.js')
 }
