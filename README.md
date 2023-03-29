@@ -4,18 +4,18 @@
 # Use cases
 **Nautus can help you:**
 - [ ] Create boilerplate code
-- [ ] Compile your code
-- [ ] Run your code
-- [ ] Test your code
-- [ ] Build your code
+- [X] Compile your code
+- [X] Run your code
+- [X] Test your code
+- [X] Build your code
 - [ ] Debug your code
-- [ ] Release your code
+- [X] Release your code
 - [ ] Generate Changelogs
 - [ ] Format your code
 - [ ] Refactor your code
-- [ ] Mange .ignore files
+- [ ] Manage .ignore files
 - [ ] Test APIs
-- [ ] Creating docs
+- [ ] Create docs
 - [ ] Choose a license
 - [ ] Lint your code
 

@@ -11,7 +11,7 @@ module.exports = [async (args) => {
         return txt
     }
 
-    for (registeredCMD of fs.readdirSync(__dirname)) {
+    for (const registeredCMD of fs.readdirSync(__dirname)) {
         if (registeredCMD.startsWith('@')) continue
         const usage = require(path.join(__dirname, registeredCMD))[1]
         const explanation = require(path.join(__dirname, registeredCMD))[2]
