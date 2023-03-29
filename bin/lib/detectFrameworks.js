@@ -1,4 +1,4 @@
-module.export = () => {
+module.exports = () => {
     const fs = require('fs-extra')
     const path = require('path')
     const frameworks = []
@@ -13,9 +13,7 @@ module.export = () => {
             if (fileStat.isDirectory()) {
                 findFilesWithExtension(filePath, extension, fileList)
             } else {
-                const fileExt = path.extname(file).toLowerCase()
-
-                if (fileExt === extension) {
+                if (file.endsWith('.' + extension)) {
                     fileList.push(filePath)
                 }
             }
@@ -25,7 +23,7 @@ module.export = () => {
     }
 
     // Node & npm
-    if (fs.existsSync(path.join(process.cwd('package.json')))) {
+    if (fs.existsSync(path.join(process.cwd(), 'package.json'))) {
         frameworks.push('node')
         frameworks.push('npm')
     }
