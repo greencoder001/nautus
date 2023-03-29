@@ -20,7 +20,7 @@
 - [ ] Lint your code
 
 # Development Status
-**Commands that have fucntionality:**
+**Commands that have functionality:**
 - [X] @main
 - [X] build
 - [X] create
