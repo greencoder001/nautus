@@ -11,13 +11,6 @@ const { version } = require('../package.json')
 const axios = require('axios')
 
 ;(async () => {
-    try {
-        const newest = (await axios.get('https://registry.npmjs.org/nautus')).data['dist-tags'].latest
-        if (newest > version) {
-            console.log(chalk.yellow('[INFO] A newer version of nautus is available! Use ') + chalk.cyan('npm i nautus -g') + chalk.yellow(' to update!'))
-        }
-    } catch {}
-
     for (const registeredCMD of fs.readdirSync(path.join(__dirname, 'commands'))) {
         const cmdName = registeredCMD.substring(0, registeredCMD.length - 3)
         if (cmd.toLowerCase() === cmdName.toLowerCase()) {
@@ -26,4 +19,11 @@ const axios = require('axios')
             break
         }
     }
+
+    try {
+        const newest = (await axios.get('https://registry.npmjs.org/nautus')).data['dist-tags'].latest
+        if (newest > version) {
+            console.log(chalk.yellow('[INFO] A newer version of nautus is available! Use ') + chalk.cyan('npm i nautus -g') + chalk.yellow(' to update!'))
+        }
+    } catch {}
 })()
