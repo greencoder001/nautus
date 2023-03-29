@@ -9,8 +9,9 @@ warn(what: any): void - Displays a warning in the console
 error(what: any): void - Displays an error in the console & exits with code 1
 exit(code: number = 0): void - Exits with a code (default: 0)
 async script(name: string): Promise<void> - Runs another script and returns after it has run. Define it by creating a @ScriptName.js file in this folder and run it by using await script('ScriptName')
+async spawn(command: string): Promise<exitCode> - Executes a command and displays the output in the shell
 */
 
-module.exports = async (cmd, os, info, warn, error, exit, script) => {
+module.exports = async (cmd, os, info, warn, error, exit, script, spawn) => {
     return error('No build script defined, please edit ./nautus/scripts/@Build.js')
 }

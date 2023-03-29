@@ -8,13 +8,13 @@ info(what: any): void - Displays an info in the console
 warn(what: any): void - Displays a warning in the console
 error(what: any): void - Displays an error in the console & exits with code 1
 exit(code: number = 0): void - Exits with a code (default: 0)
-async script(name: string): Promise<void> - Runs another script and returns after it has run. Define it by creating a @ScriptName.js file in this folder and run it by using await script('ScriptName')
+async script(name: string): Promise<void> - Runs another script and returns after it has run. Define it by creating a @ScriptName.js file in this folder and run it by using await script('ScriptName'); You can share data between scripts using global
+async spawn(command: string, args: Array<string>): Promise<exitCode> - Executes a command and displays the output in the shell
 */
 
-module.exports = async (cmd, os, info, warn, error, exit, script) => {
+module.exports = async (cmd, os, info, warn, error, exit, script, spawn) => {
     /* Example Script for a node.js app 
-    const [exitCode] = await cmd('node index.js')
-    exit(exitCode)
+    exit(await spawn('node', ['index.js']))
 
     Yes, it's that simple.
     */
