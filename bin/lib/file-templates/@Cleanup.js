@@ -8,8 +8,8 @@ info(what: any): void - Displays an info in the console
 warn(what: any): void - Displays a warning in the console
 error(what: any): void - Displays an error in the console & exits with code 1
 exit(code: number = 0): void - Exits with a code (default: 0)
-async script(name: string): Promise<void> - Runs another script and returns after it has run. Define it by creating a @ScriptName.js file in this folder and run it by using await script('ScriptName'); You can share data between scripts using global
-async spawn(command: string, args: Array<string>): Promise<exitCode> - Executes a command and displays the output in the shell
+async script(name: string): Promise<void> - Runs another script and returns after it has run. Define it by creating a @ScriptName.js file in this folder and run it by using await script('ScriptName')
+async spawn(command: string): Promise<exitCode> - Executes a command and displays the output in the shell
 
 modules: A useful collection of some modules, because it's bad practice to use require
 Over time we might add more (jsut check using info(modules)), but right now it's:
@@ -21,21 +21,11 @@ Over time we might add more (jsut check using info(modules)), but right now it's
 */
 
 module.exports = async (cmd, os, info, warn, error, exit, script, spawn, modules) => {
-    /* Example Script for a node.js app 
-    exit(await spawn('node', ['index.js']))
-
-    Yes, it's that simple.
-    */
-
+    // This script will be run after the @Run.js script
     /*
-        If you need to compile some piece of your code before
-        running, use the @Prep.js script. It will get run every
-        time before executing this script.
+        If you made some preparations before or your code leaves some unneccessary files,
+        you can clean them up here. An example would be:
+
+        await cmd('rm temp.txt')
     */
-
-    // !!IMPORTANT!!
-    // If you want to exit and want to be sure your code doesn't run anymore,
-    // use return exit() / return error()
-
-    return error('No run script defined, please edit ./nautus/scripts/@Run.js')
 }
