@@ -23,7 +23,7 @@ Over time we might add more (jsut check using info(modules)), but right now it's
 module.exports = async (cmd, os, info, warn, error, exit, script, spawn, modules) => {
     // This script will be run after the @Run.js script
     /*
-        If you made some preparations before or your code leaves some unneccessary files,
+        If you made some preparations before or your code leaves some unnecessary files,
         you can clean them up here. An example would be:
 
         await cmd('rm temp.txt')

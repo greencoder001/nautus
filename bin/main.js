@@ -16,14 +16,15 @@ const axios = require('axios')
         if (cmd.toLowerCase() === cmdName.toLowerCase()) {
             const com = require(path.join(__dirname, 'commands', registeredCMD))[0]
             com(args)
-            break
+            try {
+                const newest = (await axios.get('https://registry.npmjs.org/nautus')).data['dist-tags'].latest
+                if (newest > version) {
+                    console.log(chalk.yellow('[INFO] A newer version of nautus is available! Use ') + chalk.cyan('npm i nautus -g') + chalk.yellow(' to update!'))
+                }
+            } catch { }
+            return
         }
     }
 
-    try {
-        const newest = (await axios.get('https://registry.npmjs.org/nautus')).data['dist-tags'].latest
-        if (newest > version) {
-            console.log(chalk.yellow('[INFO] A newer version of nautus is available! Use ') + chalk.cyan('npm i nautus -g') + chalk.yellow(' to update!'))
-        }
-    } catch {}
+    console.log(chalk.red(`Error: Command ${cmd} not found. Use ${chalk.cyan('nautus help')} for a list of commands!`))
 })()
