@@ -22,7 +22,7 @@ module.exports = async () => {
     while (projectIdentifier == null || projectIdentifier == '' || projectIdentifier.match(/[^\S\r\n]|:|\/|\\|[*'#²³{\[\]}=?`$!%\(\)&<>\|,;]/g)) {
         const projectidentifierprompt = new Input({
             message: 'Project identifier?',
-            initial: (process.cwd().replace(/\\/g, '/').split('/').pop()).replace(/[^\S\r\n]|:|\/|\\|[*'#²³{\[\]}=?`$!%\(\)&<>\|,;]/g, '')
+            initial: nameOfProject.replace(/[^\S\r\n]|:|\/|\\|[*'#²³{\[\]}=?`$!%\(\)&<>\|,;]/g, '')
         })
         if (pit) console.log(chalk.red(`Project identifier cannot contain ${(projectIdentifier.match(/[^\S\r\n]|:|\/|\\|[*'#²³{\[\]}=?`$!%\(\)&<>\|,;]/g) || ['emptyness'])[0]}`))
         projectIdentifier = await projectidentifierprompt.run()

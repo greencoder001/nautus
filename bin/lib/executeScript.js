@@ -54,11 +54,11 @@ const runScript = async (scriptName, exitfunc = process.exit) => {
 
 
             prcss.stdout.on('data', (data) => {
-                console.log(data.toString())
+                process.stdout.write(data.toString())
             })
 
             prcss.stderr.on('data', (data) => {
-                console.error(data.toString())
+                process.stderr.write(data.toString())
             })
 
             prcss.on('exit', (code) => {
