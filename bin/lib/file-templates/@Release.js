@@ -57,5 +57,8 @@ module.exports = async (cmd, os, info, warn, error, exit, script, spawn, modules
         This will automatically update the version depending on the release type and publish to npm!
     */
 
+    /* PLEASE DON'T CHANGE METHOD NAMES, AS IT MIGHT BE REQUIRED BY RUNTIMES */
+    /* PLEASE DON'T DELETE OR MODIFY THIS COMMENT, IT WILL BE USED TO INJECT SCRIPTS BY KELP */
+
     return error('No release script defined, please edit ./nautus/scripts/@Release.js')
 }

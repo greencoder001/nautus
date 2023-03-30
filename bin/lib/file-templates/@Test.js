@@ -28,4 +28,7 @@ module.exports = async (cmd, os, info, warn, error, exit, script, spawn, modules
     */
 
     return error('No test script defined, please edit ./nautus/scripts/@Test.js')
+
+    /* PLEASE DON'T CHANGE METHOD NAMES, AS IT MIGHT BE REQUIRED BY RUNTIMES */
+    /* PLEASE DON'T DELETE OR MODIFY THIS COMMENT, IT WILL BE USED TO INJECT SCRIPTS BY KELP */
 }
