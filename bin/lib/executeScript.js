@@ -47,8 +47,10 @@ const runScript = async (scriptName, exitfunc = process.exit) => {
     const spwn = (comd, args) => {
         return new Promise((resolve, reject) => {
             const prcss = spawn(comd, args, {
-                cwd: process.cwd()
+                cwd: process.cwd(),
+                shell: true
             })
+
 
             prcss.stdout.on('data', (data) => {
                 console.log(data.toString())
