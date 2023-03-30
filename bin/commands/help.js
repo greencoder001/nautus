@@ -15,7 +15,7 @@ module.exports = [async (args) => {
         if (registeredCMD.startsWith('@')) continue
         const usage = require(path.join(__dirname, registeredCMD))[1]
         const explanation = require(path.join(__dirname, registeredCMD))[2]
-        console.log(fillUp(usage, 30) + chalk.grey(fillUp(explanation, 66)))
+        if (explanation !== '@dontshow') console.log(fillUp(usage, 30) + chalk.grey(fillUp(explanation, 66)))
     }
     console.log('\n\n' + chalk.bgCyan(chalk.white('                                           What\'s next                                          ')))
     console.log(`Create a nautus project using ${chalk.green('nautus create')}`)

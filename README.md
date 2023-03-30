@@ -27,7 +27,8 @@
 - [X] delete
 - [X] exec
 - [X] help
-- [ ] kelp
+- [X] kelp
+- [ ] kelp-try
 - [ ] lint
 - [X] me
 - [X] release
