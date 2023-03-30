@@ -3,7 +3,7 @@
 
 # Use cases
 **Nautus can help you:**
-- [ ] Create boilerplate code
+- [X] Create boilerplate code
 - [X] Compile your code
 - [X] Run your code
 - [X] Test your code
@@ -28,7 +28,7 @@
 - [X] exec
 - [X] help
 - [X] kelp
-- [ ] kelp-try
+- [X] kelp-try
 - [ ] lint
 - [X] me
 - [X] release
