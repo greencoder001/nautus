@@ -28,7 +28,7 @@ module.exports = {
             })
             if (answer.trim() === '' && !canBeEmpty) continue
             if (validationRegEx instanceof RegExp && answer.replace(validationRegEx, '').trim() !== '') continue 
-            if (!(awaitvalidatorFunction(answer))) continue
+            if (!(await validatorFunction(answer))) continue
             return answer
         }
     },
