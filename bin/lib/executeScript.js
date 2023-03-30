@@ -48,6 +48,7 @@ const runScript = async (scriptName, exitfunc = process.exit) => {
         return new Promise((resolve, reject) => {
             const prcss = spawn(comd, args, {
                 cwd: process.cwd(),
+                env: process.env,
                 shell: true
             })
 
