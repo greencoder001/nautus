@@ -28,7 +28,7 @@ module.exports = {
             })
             if (answer.trim() === '' && !canBeEmpty) continue
             if (validationRegEx instanceof RegExp && answer.replace(validationRegEx, '').trim() !== '') continue 
-            if (!validatorFunction(answer)) continue
+            if (!(awaitvalidatorFunction(answer))) continue
             return answer
         }
     },
@@ -57,7 +57,7 @@ module.exports = {
                 console.log(chalk.red('Cancelled'))
                 process.exit(1)
             })
-            if (!validatorFunction(answer)) continue
+            if (!(await validatorFunction(answer))) continue
             return answer
         }
     },
