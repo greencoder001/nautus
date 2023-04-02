@@ -22,7 +22,7 @@ fs.writeFile = (...args) => {
                 const argv = args.slice(1)
                 fse.writeFile(args[0] + '.new', ...argv)
             }
-        })
+        }).catch(err => { throw err})
     } else {
         fse.writeFile(...args)
     }
@@ -41,7 +41,7 @@ fs.writeJSON = (...args) => {
                 const argv = args.slice(1)
                 fse.writeJSON(args[0] + '.new', ...argv)
             }
-        })
+        }).catch(err => { throw err })
     } else {
         fse.writeJSON(...args)
     }
@@ -60,7 +60,7 @@ fs.writeJson = (...args) => {
                 const argv = args.slice(1)
                 fse.writeJson(args[0] + '.new', ...argv)
             }
-        })
+        }).catch(err => { throw err })
     } else {
         fse.writeJson(...args)
     }

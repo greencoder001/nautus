@@ -2,6 +2,7 @@ module.exports = [async (args) => {
     const chalk = require('chalk')
     const path = require('path')
     const fs = require('fs-extra')
+    const q = require('../lib/prompts')
     if (!require('../lib/isProjectInitialized')()) return console.log(require('chalk').red('This command require a nautus project. Initialize it using ' + require('chalk').cyan('nautus create') + '!'))
     
     function fillUp(txt, c) {
@@ -28,6 +29,7 @@ module.exports = [async (args) => {
         show('format [options] [-h]', 'Formats your code. Use format -h for more help')
         show('lint [--fix]', 'Lints or fixes your code')
         show('protect', 'Protects this tank against changes')
+        show('cmd <command> [-d] [-h]', 'Runs a command for every file. Use cmd -h for more help')
         return
     }
 
@@ -61,9 +63,108 @@ module.exports = [async (args) => {
         }
 
         if (args[1] === 'delete') {
+            if (!JSON.parse(fs.readFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json'))).map(e => e.id).includes(args[0])) console.log(chalk.red('Error: Tank dosn\' exist'))
 
+            let tanks = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json')))
+            tanks = tanks.filter(tank => tank.id !== args[0])
+            fs.writeFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json'), JSON.stringify(tanks))
+
+            console.log(chalk.green('Successfully deleted tank ' + args[0]))
         } else if (args[1] === 'paths') {
+            let exit = false
+            while (!exit) {
+                const menu = await q.select('What do you want to do?', [
+                    'List paths',
+                    'Include a path',
+                    'Edit included paths',
+                    'Exclude a path',
+                    'Edit excluded paths',
+                    'Exit'
+                ])
 
+                function getIncluded () {
+                    return JSON.parse(fs.readFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json'))).filter(e => e.id === args[0])[0].paths.include
+                }
+
+                function setIncluded (v) {
+                    let uv = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json')))
+                    uv = uv.map(e => {
+                        if (e.id === args[0]) {
+                            e.paths.include = v
+                        }
+                        return e
+                    })
+                    fs.writeFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json'), JSON.stringify(uv))
+                }
+
+                function getExcluded() {
+                    return JSON.parse(fs.readFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json'))).filter(e => e.id === args[0])[0].paths.exclude
+                }
+
+                function setExcluded(v) {
+                    let uv = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json')))
+                    uv = uv.map(e => {
+                        if (e.id === args[0]) {
+                            e.paths.exclude = v
+                        }
+                        return e
+                    })
+                    fs.writeFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json'), JSON.stringify(uv))
+                }
+
+                if (menu === 'List paths') {
+                    console.log(chalk.cyan('Included:'))
+                    for (const p of getIncluded()) {
+                        console.log(p)
+                    }
+                    console.log()
+                    console.log(chalk.cyan('Excluded:'))
+                    for (const p of getExcluded()) {
+                        console.log(p)
+                    }
+                } else if (menu === 'Include a path') {
+                    console.log(chalk.cyan('Enter all paths or press enter to stop'))
+                    let last = false
+                    while (!last) {
+                        const now = getIncluded()
+                        const a = await q.prompt('Path', '', null, true)
+                        if (a.trim() === '') {
+                            last = true
+                            break
+                        }
+                        now.push(a)
+                        setIncluded(now)
+                    }
+                } else if (menu === 'Exclude a path') {
+                    console.log(chalk.cyan('Enter all paths or press enter to stop'))
+                    let last = false
+                    while (!last) {
+                        const now = getExcluded()
+                        const a = await q.prompt('Path', '', null, true)
+                        if (a.trim() === '') {
+                            last = true
+                            break
+                        }
+                        now.push(a)
+                        setExcluded(now)
+                    }
+                } else if (menu === 'Edit included paths') {
+                    let ps = getIncluded()
+                    const toDel = await q.multiSelect('Select every path you don\'t want to include anymore:', ps)
+                    ps = ps.filter(e => !toDel.includes(e))
+                    setIncluded(ps)
+                } else if (menu === 'Edit excluded paths') {
+                    let ps = getExcluded()
+                    const toDel = await q.multiSelect('Select every path you don\'t want to exclude anymore:', ps)
+                    ps = ps.filter(e => !toDel.includes(e))
+                    setExcluded(ps)
+                } else {
+                    exit = true
+                }
+
+                console.log()
+            }
+            console.log(chalk.green('Updated paths successfully'))
         } else if (args[1] === 'include') {
 
         } else if (args[1] === 'exclude') {
@@ -75,6 +176,8 @@ module.exports = [async (args) => {
         } else if (args[1] === 'lint') {
 
         } else if (args[1] === 'protect') {
+
+        } else if (args[1] === 'cmd') {
 
         } else {
             console.log(chalk.red('Error: Unknown command ' + args[1]))
