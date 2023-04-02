@@ -49,6 +49,7 @@ module.exports = async () => {
 
     fs.mkdirSync(dir)
     fs.mkdirSync(path.join(dir, '.internal'))
+    fs.mkdirSync(path.join(dir, 'refactor'))
     if (fs.existsSync(path.join(os.homedir(), '.nautusme'))) {
         fs.copyFileSync(path.join(os.homedir(), '.nautusme'), path.join(dir, '.internal', '.nautusme'))
     } else {

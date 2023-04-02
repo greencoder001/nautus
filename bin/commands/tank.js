@@ -25,7 +25,7 @@ module.exports = [async (args) => {
         show('paths', 'Gives you a nice UI to mage paths')
         show('include <path>', 'Includes a path')
         show('exclude <path>', 'Excludes a path that would be included by the above')
-        show('refactor [options] [-h]', 'Refactors your code. Use refactor -h for more help')
+        show('refactor <respath> [-h]', 'Refactors your code. Use refactor -h for more help')
         show('format [options] [-h]', 'Formats your code. Use format -h for more help')
         show('lint [--fix]', 'Lints or fixes your code')
         show('protect', 'Protects this tank against changes')
@@ -208,7 +208,11 @@ module.exports = [async (args) => {
             setExcluded(now)
             console.log(chalk.green('Action was successful'))
         } else if (args[1] === 'refactor') {
-            
+            if (args.includes('-h') || !args[2]) {
+                console.log('This command can help you refactor your code using RegExScript. Please refer to GitHub for more info.')
+            } else {
+
+            }
         } else if (args[1] === 'format') {
 
         } else if (args[1] === 'lint') {

@@ -81,3 +81,24 @@ If you want to generate boilerplate code, use kelp. To list all available genera
 
 # Creating a boilerplate generator for kelp
 If you want to generate boilerplate code, you need to use kelp. If you wanted to create a npm-module you could use `nautus kelp npm`. This would search for a npm package called `nautus-npm`. If this package exists, nautus will download it and use it for boilerplate generation. To create your own generator create a new project using `nautus create` and `nautus kelp kelp`. Now jump into your editor to write some code and see examples. If you need inspiration or more examples, look [here](https://www.npmjs.com/search?q=nautus). After your done, run `nautus release major` to release your first version to npm. After that you can use `nautus release <major|minor|patch>` to publish it again. After that you can use it by using `nautus kelp my-generator`.
+
+
+# Regular Expression Script (RES)
+If you are working with tanks, you might need to refactor your code. To do that we use RES, which is a custom language to write replacements using regular expressions. If you want matching syntax highlighting choose `CoffeScript` in your editor. To create a new RES, create a file called `coolnamehere.res` in the `./nautus/refactor` directory. Here you can write your script like this:
+```coffee
+/regular expression belongs here/g -> 'value to replace with'
+/2nd reg(.*?)ex/gi -> 'You entered "' + $1 + '" between reg and ex!'
+```
+After that you can use it by running `nautus tank main refactor coolnamehere`. If you want a more real example, here's how to refactor commonjs require code to esm:
+
+**require-to-esm.res**:
+```coffee
+/(const|var|let) (.*?)([ ]*)=([ ]*)require\(["'](.*?)["']\)/g -> 'import ' + $1 + ' from ' + $5 + $6 + $5
+```
+This will replace `const fs = require('fs')` with `import fs from 'fs'`
+
+The syntax is basically this:
+```
+RegExp -> String
+```
+The string is allowed to be concattenated with content of groups by using `String + $groupNumber`
