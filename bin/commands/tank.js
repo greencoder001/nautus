@@ -166,11 +166,49 @@ module.exports = [async (args) => {
             }
             console.log(chalk.green('Updated paths successfully'))
         } else if (args[1] === 'include') {
+            function getIncluded() {
+                return JSON.parse(fs.readFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json'))).filter(e => e.id === args[0])[0].paths.include
+            }
 
+            function setIncluded(v) {
+                let uv = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json')))
+                uv = uv.map(e => {
+                    if (e.id === args[0]) {
+                        e.paths.include = v
+                    }
+                    return e
+                })
+                fs.writeFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json'), JSON.stringify(uv))
+            }
+
+            const now = getIncluded()
+            if (!args[2]) return console.log(chalk.red('Please provide a path'))
+            now.push(args[2])
+            setIncluded(now)
+            console.log(chalk.green('Action was successful'))
         } else if (args[1] === 'exclude') {
+            function getExcluded() {
+                return JSON.parse(fs.readFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json'))).filter(e => e.id === args[0])[0].paths.exclude
+            }
 
+            function setExcluded(v) {
+                let uv = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json')))
+                uv = uv.map(e => {
+                    if (e.id === args[0]) {
+                        e.paths.exclude = v
+                    }
+                    return e
+                })
+                fs.writeFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json'), JSON.stringify(uv))
+            }
+
+            const now = getExcluded()
+            if (!args[2]) return console.log(chalk.red('Please provide a path'))
+            now.push(args[2])
+            setExcluded(now)
+            console.log(chalk.green('Action was successful'))
         } else if (args[1] === 'refactor') {
-
+            
         } else if (args[1] === 'format') {
 
         } else if (args[1] === 'lint') {

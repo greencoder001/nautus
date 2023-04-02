@@ -78,7 +78,7 @@ module.exports = async () => {
     fs.writeFileSync(path.join(dir, '.internal', 'techniques.json'), JSON.stringify({
         techniques: techs
     }))
-    fs.writeFileSync(path.join(dir, 'lint.yaml'), '# Here you can specify linting commands for specific tanks\n# If you haven\'t created any yet, use the main tank\n' + YAML.stringify({
+    fs.writeFileSync(path.join(dir, 'lint.yaml'), '# Here you can specify linting commands for specific tanks\n# If you haven\'t created any yet, use the main tank\n# Every command will get run for every file\n# To get the file name use ${filename}\n# If your linter does not support filenames, use @COPY [YOUR_COMMAND]\n# This will run the command in a isolated directory only containing this file\n# If you only want to execute a command once, use @ONCE [YOUR_COMMAND]\n' + YAML.stringify({
         tanks: {
             main: {
                 lintingCommand: 'echo "No linting command specified! Please edit nautus/lint.yaml"',
