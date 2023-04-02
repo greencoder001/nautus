@@ -61,7 +61,16 @@ module.exports = async () => {
         }))
     }
     fs.copySync(path.join(__dirname, 'file-templates'), path.join(dir, 'scripts'))
-    fs.writeFileSync(path.join(dir, '.internal', 'tanks.json'), JSON.stringify([{id: 'main'}]))
+    fs.writeFileSync(path.join(dir, '.internal', 'tanks.json'), JSON.stringify([
+        {
+            id: 'main',
+            paths: {
+               include: ['*'],
+               exclude: [] 
+            },
+            protected: false
+        }
+    ]))
     fs.writeFileSync(path.join(dir, '.internal', 'project.json'), JSON.stringify({
         identifier: projectIdentifier,
         name: nameOfProject

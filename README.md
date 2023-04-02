@@ -18,6 +18,7 @@
 - [ ] Create docs
 - [ ] Choose a license
 - [ ] Lint your code
+- [ ] Manage GitHub workflows
 
 # Development Status
 **Commands that have functionality:**
