@@ -208,10 +208,44 @@ module.exports = [async (args) => {
             setExcluded(now)
             console.log(chalk.green('Action was successful'))
         } else if (args[1] === 'refactor') {
-            if (args.includes('-h') || !args[2]) {
-                console.log('This command can help you refactor your code using RegExScript. Please refer to GitHub for more info.')
-            } else {
+            function getIncluded() {
+                return JSON.parse(fs.readFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json'))).filter(e => e.id === args[0])[0].paths.include
+            }
 
+            function getExcluded() {
+                return JSON.parse(fs.readFileSync(path.join(process.cwd(), 'nautus', '.internal', 'tanks.json'))).filter(e => e.id === args[0])[0].paths.exclude
+            }
+
+            if (args.includes('-h') || !args[2]) {
+                console.log('This command can help you refactor your code using RegExScript. Please refer to https://github.com/greencoder001/nautus#regular-expression-script-res for more info.')
+            } else {
+                if (!fs.existsSync(path.join(process.cwd(), 'nautus', 'refactor', args[2] + '.res'))) return console.log(chalk.red('Error: File ./nautus/refactor/' + args[2] + '.res doesn\'t exit!'))
+                let script = fs.readFileSync(path.join(process.cwd(), 'nautus', 'refactor', args[2] + '.res')).toString('utf8')
+                script = script.replace(/^\/(.*)\/([gimsuy]*?) -> (.*?)$/gm, (_m, regex, flags, replacer) => {
+                    const highest = Math.max(..._m.match(/\$(\d*)/g).map(n => n.substring(1)))
+                    let varArr = []
+                    for (let i = 1; i <= highest; i++) {
+                        varArr.push('$' + i)
+                    }
+                    const varStr = varArr.join(', ')
+
+                    return `;str = str.replace(/${regex}/${flags}, ($match, ${varStr}) => {
+                        return ${replacer};
+                    });\n`
+                })
+
+                const res = (code) => {
+                    return eval(`let str = \`${code.replace(/`/g, '\\`')}\`;() => {
+                        ${script}
+                        ;return str;
+                    }`)()
+                }
+
+                for (const f of require('../lib/pathResolver').resolveFiles(getIncluded(), getExcluded())) {
+                    fs.writeFileSync(path.join(process.cwd(), f), res(fs.readFileSync(path.join(process.cwd(), f)).toString('utf8')))
+                }
+
+                console.log(chalk.green('Refactored code successfully!'))
             }
         } else if (args[1] === 'format') {
 
