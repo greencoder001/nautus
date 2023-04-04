@@ -1,6 +1,6 @@
 {
   "name": "nautus",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "Your one & only ultimate software development tool 🪸",
   "main": "bin/main.js",
   "bin": {
