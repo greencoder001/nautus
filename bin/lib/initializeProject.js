@@ -82,8 +82,16 @@ module.exports = async () => {
     fs.writeFileSync(path.join(dir, 'lint.yaml'), '# Here you can specify linting commands for specific tanks\n# If you haven\'t created any yet, use the main tank\n# Every command will get run for every file\n# To get the file name use ${filename}\n# If your linter does not support filenames, use @COPY [YOUR_COMMAND]\n# This will run the command in a isolated directory only containing this file\n# If you only want to execute a command once, use @ONCE [YOUR_COMMAND]\n' + YAML.stringify({
         tanks: {
             main: {
-                lintingCommand: 'echo "No linting command specified! Please edit nautus/lint.yaml"',
-                fixCommand: 'echo "No fix command specified! Please edit nautus/lint.yaml"'
+                command: '@ONCE echo "No linting command specified! Please edit nautus/lint.yaml"',
+                fixCommand: '@ONCE echo "No fix command specified! Please edit nautus/lint.yaml"'
+            }
+        }
+    }))
+
+    fs.writeFileSync(path.join(dir, 'format.yaml'), '# Here you can specify formatting commands for specific tanks\n# If you haven\'t created any yet, use the main tank\n# Every command will get run for every file\n# To get the file name use ${filename}\n# If your formatter does not support filenames, use @COPY [YOUR_COMMAND]\n# This will run the command in a isolated directory only containing this file\n# If you only want to execute a command once, use @ONCE [YOUR_COMMAND]\n' + YAML.stringify({
+        tanks: {
+            main: {
+                command: '@ONCE echo "No formatting command specified! Please edit nautus/format.yaml"'
             }
         }
     }))

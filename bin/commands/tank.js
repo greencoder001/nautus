@@ -26,10 +26,9 @@ module.exports = [async (args) => {
         show('include <path>', 'Includes a path')
         show('exclude <path>', 'Excludes a path that would be included by the above')
         show('refactor <respath> [-h]', 'Refactors your code. Use refactor -h for more help')
-        show('format [options] [-h]', 'Formats your code. Use format -h for more help')
-        show('lint [--fix]', 'Lints or fixes your code')
-        show('protect', 'Protects this tank against changes')
-        show('cmd <command> [-d] [-h]', 'Runs a command for every file. Use cmd -h for more help')
+        show('format [-h]', 'Formats your code. Use format -h for more help')
+        show('lint [--fix] [-h]', 'Lints or fixes your code.  Use lint -h for more help')
+        show('cmd <command> [-h]', 'Runs a command for every file. Use cmd -h for more help')
         return
     }
 
@@ -248,13 +247,26 @@ module.exports = [async (args) => {
                 console.log(chalk.green('Refactored code successfully!'))
             }
         } else if (args[1] === 'format') {
-
+            if (args.includes('-h')) {
+                console.log('This command can help you format your code by using a tool like prettier. To configure it take a look at ./nautus/format.yaml. To run use nautus tank <tank> format')
+            } else {
+                await require('../lib/cmdTankEngine')('format.yaml', false, args[0])
+                console.log(chalk.green('Successfully formatted tank ' + args[0]))
+            }
         } else if (args[1] === 'lint') {
-
-        } else if (args[1] === 'protect') {
-
+            if (args.includes('-h')) {
+                console.log('This command can help you lint your code. To configure it take a look at ./nautus/lint.yaml. To run use nautus tank <tank> lint [--fix]')
+            } else {
+                await require('../lib/cmdTankEngine')('lint.yaml', args.join(' ').includes('--fix'), args[0])
+                console.log(chalk.green('Successfully linted ' + (args.join(' ').includes('--fix') ? '& fixed ' : '') + 'tank ' + args[0]))
+            }
         } else if (args[1] === 'cmd') {
-
+            if (args.includes('-h') || !args[2]) {
+                console.log('This command can help you run a command. Use nautus tank <tank> cmd <cmd> for that. It works exactly like a lint command, so take a look at ./nautus/lint.yaml')
+            } else {
+                await require('../lib/cmdTankEngine')('@RAW', false, args[0], args.slice(2).join(' '))
+                console.log(chalk.green('Successfully executed command!'))
+            }
         } else {
             console.log(chalk.red('Error: Unknown command ' + args[1]))
             console.log(chalk.red('Use "nautus tank --help" for a list of commands'))

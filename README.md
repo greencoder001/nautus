@@ -11,14 +11,15 @@
 - [ ] Debug your code
 - [X] Release your code
 - [ ] Generate Changelogs
-- [ ] Format your code
-- [ ] Refactor your code
+- [X] Format your code
+- [X] Refactor your code
 - [ ] Manage .ignore files
 - [ ] Test APIs
 - [ ] Create docs
 - [ ] Choose a license
-- [ ] Lint your code
+- [X] Lint your code
 - [ ] Manage GitHub workflows
+- [ ] Automatically detect used technologies & integrate them with nautus
 
 # Development Status
 **Commands that have functionality:**
@@ -34,7 +35,7 @@
 - [X] me
 - [X] release
 - [X] run
-- [ ] tank
+- [X] tank
 - [X] test
 - [ ] use
 

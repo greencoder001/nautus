@@ -36,6 +36,7 @@
     "promisify-function": "^1.3.2",
     "shell-quote": "^1.8.0",
     "uuid": "^9.0.0",
-    "yaml": "^2.2.1"
+    "yaml": "^2.2.1",
+    "yamljs": "^0.3.0"
   }
 }

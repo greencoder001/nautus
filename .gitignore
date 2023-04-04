@@ -2,6 +2,7 @@
 nautus.bat
 test
 .dccache
+.vscode/
 
 # Logs
 logs
