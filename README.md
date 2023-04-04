@@ -31,7 +31,7 @@
 - [X] help
 - [X] kelp
 - [X] kelp-try
-- [ ] lint
+- [X] lint
 - [X] me
 - [X] release
 - [X] run
