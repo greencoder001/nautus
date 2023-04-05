@@ -25,24 +25,6 @@ We want to see nautus grow, so if you have a feature request just create a issue
 - [ ] Manage GitHub workflows
 - [ ] Automatically detect used technologies & integrate them with nautus
 
-# Development Status
-**Commands that have functionality:**
-- [X] @main
-- [X] build
-- [X] create
-- [X] delete
-- [X] exec
-- [X] help
-- [X] kelp
-- [X] kelp-try
-- [X] lint
-- [X] me
-- [X] release
-- [X] run
-- [X] tank
-- [X] test
-- [X] use
-
 # Goals
 **Some things we'd like nautus to achieve:**
 - Becoming the the only software tool you'll ever need
