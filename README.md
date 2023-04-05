@@ -33,7 +33,7 @@ We want to see nautus grow, so if you have a feature request just create a issue
 - Being used in at least 5 projects (If you use nautus, please create a issue stating for what you use nautus so we can list you as an early supporter)
 
 # Why shouldn't I just use a task runner?
-The answer is simple: A task runner does what it should, it runs tasks. But nautus can do much more (as seen [above](#use-cases)). Nautus also provides you with a useful cli and has made becoming the only software development tool you'll ever need to it's goal. Nautus will help you manage and automate your code and has it's own boilerplate generator. Also, who says you can't use both? For example if you wanted to use gulp, just add
+The answer is simple: A task runner does what it should, it runs tasks. But nautus can do much more (as seen [above](#use-cases)). Nautus also provides you with a useful cli and has made becoming the only software development tool you'll ever need it's goal. Nautus will help you manage and automate your code and has it's own boilerplate generator. Also, who says you can't use both? For example if you wanted to use gulp, just add
 ```js
 await cmd('gulp').catch(error)
 ```
