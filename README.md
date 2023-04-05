@@ -78,7 +78,46 @@ If you want to generate boilerplate code, use kelp. To list all available genera
 # Commands
 
 # Tanks
-**Coming soon...**
+**If you want to lint, format or refactor parts of your code, you can use the nautus tank command:**
+To list all commands run `nautus tank`.
+If you want to list all tanks you can use the `nautus tank ls` command. All other commands are listed here and have the followeing syntax: `nautus tank <tankname> <command> [options]`
+
+## create
+> Creates a tank with the specified tankname
+> Usage: nautus tank mytank create
+
+## delete
+> Deletes a tank with the specified tankname
+> Usage: nautus tank mytank delete
+
+## paths
+> Walks you through an UI to include and exclude specific patgs in the tank
+> You can use the default path template syntax (e.g. src/\*\*/\*.js)
+> Usage: nautus tank mytank paths
+
+## include
+> Includes specific filepath
+> Usage: nautus tank mytank include src/*.js
+
+## exclude
+> Excludes a beforehand included filepath
+> Usage: nautus tank mytank exclude src/*.min.js
+
+## refactor
+> Refactors the code in the tank using a Regular Expression Script file (read more about that [here](#regular-expression-script-res))
+> Usage: nautus tank mytank refactor myregexscript
+
+## format
+> Formats your code using a formatter like prettier. Define it in `./nautus/format.yaml`
+> Usage: nautus tank mytank format
+
+## lint
+> Lints or fixes your code. Define it in `./nautus/lint.yaml`
+> Usage: nautus tank mytank lint --fix
+
+## cmd
+> Runs a command for every file, kind of like [format](#format)
+> Usage: nautus tank mytank cmd "@ONCE echo this is a command!!"
 
 # Creating a boilerplate generator for kelp
 If you want to generate boilerplate code, you need to use kelp. If you wanted to create a npm-module you could use `nautus kelp npm`. This would search for a npm package called `nautus-npm`. If this package exists, nautus will download it and use it for boilerplate generation. To create your own generator create a new project using `nautus create` and `nautus kelp kelp`. Now jump into your editor to write some code and see examples. If you need inspiration or more examples, look [here](https://www.npmjs.com/search?q=nautus). After your done, run `nautus release major` to release your first version to npm. After that you can use `nautus release <major|minor|patch>` to publish it again. After that you can use it by using `nautus kelp my-generator`.
