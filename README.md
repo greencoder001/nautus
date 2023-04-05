@@ -24,7 +24,7 @@ We want to see nautus grow, so if you have a feature request just create a issue
 - [X] Lint your code
 - [ ] Manage GitHub workflows
 - [X] Automatically detect used technologies & integrate them with nautus
-- [ ] Create code backups
+- [X] Create code backups
 
 # Goals
 **Some things we'd like nautus to achieve:**
