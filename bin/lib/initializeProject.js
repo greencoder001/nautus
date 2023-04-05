@@ -9,7 +9,9 @@ module.exports = async () => {
     const dir = path.join(process.cwd(), 'nautus')
     const YAML = require('yaml')
     const { MultiSelect, Input } = require('enquirer')
+    const q = require('./prompts')
     const sleep = (ms) => new Promise(r => setTimeout(r, ms))
+    const kelpEngine = require('./kelpEngine')
 
     // General Info
     const projectnameprompt = new Input({
@@ -76,9 +78,6 @@ module.exports = async () => {
         identifier: projectIdentifier,
         name: nameOfProject
     }))
-    fs.writeFileSync(path.join(dir, '.internal', 'techniques.json'), JSON.stringify({
-        techniques: techs
-    }))
     fs.writeFileSync(path.join(dir, 'lint.yaml'), '# Here you can specify linting commands for specific tanks\n# If you haven\'t created any yet, use the main tank\n# Every command will get run for every file\n# To get the file name use ${filename}\n# If your linter does not support filenames, use @COPY [YOUR_COMMAND]\n# This will run the command in a isolated directory only containing this file\n# If you only want to execute a command once, use @ONCE [YOUR_COMMAND]\n' + YAML.stringify({
         tanks: {
             main: {
@@ -95,5 +94,28 @@ module.exports = async () => {
             }
         }
     }))
+
+    if (Object.keys(techs).length > 0) {
+        console.log(chalk.cyan('We tried to figure out used techniques for you above, now you get the option to run a kelp-generator for them (generates boilerplate), add support in your scripts or just skip configuring it for nautus:'))
+        for (const t of Object.keys(techs)) {
+            const a = await q.select(t, [
+                'Generate boilerplate',
+                'Configure it for nautus',
+                'Skip'
+            ])
+            switch (a) {
+                case 'Generate boilerplate':
+                    await kelpEngine(t)
+                    break
+                case 'Configure it for nautus':
+                    await kelpEngine(t, 'use')
+                    break
+                case 'Skip':
+                    break
+                default:
+                    break
+            }
+        }
+    }
 
 }
