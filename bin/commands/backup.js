@@ -49,4 +49,4 @@ module.exports = [async (args) => {
     await zip.writeZipPromise(pth)
 
     console.log(chalk.green('Backup created successfully. Take a look at it in ./nautus/backups'))
-}, 'backup', 'Creates a full code backup (except for files specified in the .gitignore)']
+}, 'backup', 'Creates a full code backup (except for files in .gitignore)']

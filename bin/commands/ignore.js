@@ -12,4 +12,4 @@ module.exports = [async (args) => {
     }
 
     console.log(chalk.green('Successfully added ignore paths!'))
-}, 'ignore <path> <provider1> [provider2] [...]', 'Adds a path to your ignore files. Example usage: ignore dist git npm']
+}, 'ignore <path> <providers>', 'Adds paths to your ignore files. Example: ignore dist git npm']

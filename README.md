@@ -12,9 +12,8 @@ We want to see nautus grow, so if you have a feature request just create a issue
 - [X] Run your code
 - [X] Test your code
 - [X] Build your code
-- [ ] Debug your code
 - [X] Release your code
-- [ ] Generate Changelogs
+- [X] Generate Changelogs
 - [X] Format your code
 - [X] Refactor your code
 - [X] Manage .ignore files
@@ -32,7 +31,6 @@ We want to see nautus grow, so if you have a feature request just create a issue
 - Integrating yeoman generators in the kelp ecosystem
 - Getting a GUI
 - Being used in at least 5 projects (If you use nautus, please create a issue stating for what you use nautus so we can list you as an early supporter)
-- Use https://github.com/github-changelog-generator/github-changelog-generator#readme for changelog generation
 
 # Why shouldn't I just use a task runner?
 The answer is simple: A task runner does what it should, it runs tasks. But nautus can do much more (as seen [above](#use-cases)). Nautus also provides you with a useful cli and has made becoming the only software development tool you'll ever need to it's goal. Nautus will help you manage and automate your code and has it's own boilerplate generator. Also, who says you can't use both? For example if you wanted to use gulp, just add
@@ -109,6 +107,8 @@ If you want to list all tanks you can use the `nautus tank ls` command. All othe
 # Creating a boilerplate generator for kelp
 If you want to generate boilerplate code, you need to use kelp. If you wanted to create a npm-module you could use `nautus kelp npm`. This would search for a npm package called `nautus-npm`. If this package exists, nautus will download it and use it for boilerplate generation. To create your own generator create a new project using `nautus create` and `nautus kelp kelp`. Now jump into your editor to write some code and see examples. If you need inspiration or more examples, look [here](https://www.npmjs.com/search?q=nautus). After your done, run `nautus release major` to release your first version to npm. After that you can use `nautus release <major|minor|patch>` to publish it again. After that you can use it by using `nautus kelp my-generator`.
 
+
+# Generating changelogs
 
 # Regular Expression Script (RES)
 If you are working with tanks, you might need to refactor your code. To do that we use RES, which is a custom language to write replacements using regular expressions. If you want matching syntax highlighting choose `CoffeScript` in your editor. To create a new RES, create a file called `coolnamehere.res` in the `./nautus/refactor` directory. Here you can write your script like this:

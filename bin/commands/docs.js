@@ -30,4 +30,4 @@ module.exports = [async (args) => {
 
     fs.writeFileSync(path.join(process.cwd(), out), md)
 
-}, 'docs', 'Generates markdown documentation using the jsdoc comments in your program']
+}, 'docs', 'Generates markdown docs based on your jsdoc comments']

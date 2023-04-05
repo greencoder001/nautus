@@ -3,6 +3,7 @@ nautus.bat
 test
 .dccache
 .vscode/
+token.txt
 
 # Logs
 logs
