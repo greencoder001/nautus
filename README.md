@@ -19,7 +19,7 @@ We want to see nautus grow, so if you have a feature request just create a issue
 - [X] Refactor your code
 - [ ] Manage .ignore files
 - [ ] Test APIs
-- [ ] Create docs
+- [X] Create docs
 - [ ] Choose a license
 - [X] Lint your code
 - [ ] Manage GitHub workflows
