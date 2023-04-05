@@ -33,7 +33,6 @@ const rcmd = (command) => {
 const kelpDir = path.join(os.homedir(), '.nautus-kelp')
 
 module.exports = async (name, type = 'generator', isLocal = false) => {
-    console.log('📞 KELP CALL!')
     const moduleName = `nautus-${name}`
     const spinner = (await import('nanospinner')).createSpinner
     let genp

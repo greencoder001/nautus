@@ -2,6 +2,9 @@
  Your one & only ultimate software development tool
  **NOTE: Development is still in progress, this notice will dissapear when the first stable version is released**
 
+# Contribution
+We want to see nautus grow, so if you have a feature request just create a issue on GitHub and if you want to add a feature yourself, fix a typo or just want to optimize something, please feel free to open a pull request with a detailed explanation.
+
 # Use cases
 **Nautus can help you:**
 - [X] Create boilerplate code
@@ -38,7 +41,7 @@
 - [X] run
 - [X] tank
 - [X] test
-- [ ] use
+- [X] use
 
 # Goals
 **Some things we'd like nautus to achieve:**

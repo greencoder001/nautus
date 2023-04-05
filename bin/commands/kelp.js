@@ -12,7 +12,7 @@ module.exports = [async (args) => {
     }
 
     if (!args[0] || typeof args[0] !== 'string' || args[0].trim().length < 1) {
-        console.log(chalk.red(`Please provide a generator like this ${chalk.cyan('nautus kelp [generator-name]')}! Also make sure to remove the nautus- infornt of the generator name!`))
+        console.log(chalk.red(`Please provide a generator like this ${chalk.cyan('nautus kelp [generator-name]')}! Also make sure to remove the nautus- infront of the generator name!`))
         console.log(`\n${chalk.bgCyan(chalk.white('                                      Available Generators                                      '))}`)
         const res = await axios.get('https://registry.npmjs.org/-/v1/search?text=nautus&size=250')
         const cmds = res.data.objects.map(p => {
