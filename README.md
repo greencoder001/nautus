@@ -17,13 +17,14 @@ We want to see nautus grow, so if you have a feature request just create a issue
 - [ ] Generate Changelogs
 - [X] Format your code
 - [X] Refactor your code
-- [ ] Manage .ignore files
+- [X] Manage .ignore files
 - [ ] Test APIs
 - [X] Create docs
 - [X] Generate a license file
 - [X] Lint your code
 - [ ] Manage GitHub workflows
-- [ ] Automatically detect used technologies & integrate them with nautus
+- [X] Automatically detect used technologies & integrate them with nautus
+- [ ] Create code backups
 
 # Goals
 **Some things we'd like nautus to achieve:**
