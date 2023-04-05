@@ -1,4 +1,4 @@
-# Nautus 🪸
+# Naut 🪸
  Your one & only ultimate software development tool
  **NOTE: Development is still in progress, this notice will dissapear when the first stable version is released**
 
