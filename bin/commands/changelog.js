@@ -12,7 +12,7 @@ module.exports = [async (args) => {
         '\n\nKeep in mind: This token will grant access to your GitHub repos, so make sure you trust the services you give it to. As nautus is open source, you might want to take a look at https://raw.githubusercontent.com/greencoder001/nautus/main/bin/commands/changelog.js to see how your token is used.' +
         '\n\nIf you have your token created you can run this command like this:\nnautus changelog <user> <repo> <GITHUB_TOKEN> <outputFileName> <releaseTag> [sinceCommit]\n' +
         'Example usage: nautus changelog greencoder001 nautus MYGITHUBTOKEN123 changelog.md v1.0.0 7599e2d44a18f5c8edef7924ff5945a77be5fc62' +
-        '\nThe last argument is only necessary if you want to create a changelog since a specific commit and not since the last release. You don\'t have to provide it\n\n\nIf you need more info about how to create a GitHub workflow & more take a look at https://github.com/greencoder001/nautus#generating-changelogs') + '\n\n' + chalk.yellow('If you want to add badegs to your changelog, add them in the file ./badges.md'))
+        '\nThe last argument is only necessary if you want to create a changelog since a specific commit and not since the last release. You don\'t have to provide it\n\n\nIf you need more info about how to create a GitHub workflow & more take a look at https://github.com/greencoder001/nautus#generating-changelogs') + '\n\n' + chalk.yellow('If you want to add badges to your changelog, add them in the file ./badges.md'))
     }
 
     if (!user) return console.log(chalk.red('Error: Please specify the user(name). For more information run nautus changelog --help'))

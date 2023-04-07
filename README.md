@@ -1,29 +1,28 @@
 # Nautus 🪸
  Your one & only ultimate software development tool
- **NOTE: Development is still in progress, this notice will dissapear when the first stable version is released**
-
-# Contribution
-We want to see nautus grow, so if you have a feature request just create a issue on GitHub and if you want to add a feature yourself, fix a typo or just want to optimize something, please feel free to open a pull request with a detailed explanation.
 
 # Use cases
 **Nautus can help you:**
-- [X] Create boilerplate code
-- [X] Compile your code
-- [X] Run your code
-- [X] Test your code
-- [X] Build your code
-- [X] Release your code
-- [X] Generate Changelogs
-- [X] Format your code
-- [X] Refactor your code
-- [X] Manage .ignore files
-- [X] Test APIs
-- [X] Create docs
-- [X] Generate a license file
-- [X] Lint your code
-- [X] Automatically detect used technologies & integrate them with nautus
-- [X] Create code backups
-- [X] Watch & recompile only parts of your code
+- Create boilerplate code
+- Compile your code
+- Run your code
+- Test your code
+- Build your code
+- Release your code
+- Generate Changelogs
+- Format your code
+- Refactor your code
+- Manage .ignore files
+- Test APIs
+- Create docs
+- Generate a license file
+- Lint your code
+- Automatically detect used technologies & integrate them with nautus
+- Create code backups
+- Watch & recompile only parts of your code
+
+# Contribution
+We want to see nautus grow, so if you have a feature request just create a issue on GitHub and if you want to add a feature yourself, fix a typo or just want to optimize something, please feel free to open a pull request with a detailed explanation.
 
 # Goals
 **Some things we'd like nautus to achieve:**
@@ -89,6 +88,30 @@ echo $NAUTUS_ENABLE_STDOUT
 **NOTE: Background agents can't be run through the `nautus agent run <agentName>` command, however they will be run on `nautus run`**
 
 # Commands
+You can list all commands by using `nautus help`. Here's a list of all commands and a more detailed explanation anyways.
+
+
+|Command name|Arguments|Explanation|Example Usage|
+|--|--|--|--|
+|agent|`<create|run> <agentName>`|Creates or runs an agent with the specified name. Take a look at [this](#agents) for more help|`nautus agent create MyAgentName`|
+|api||Opens a CLI based API Client which can run basic request to test your api and is able to save cookies. It supports FormData and file uploading. Just use the `HELP` command|nautus api|
+|backup||Creates a backup of your code (excluding files and folders specified in the `.gitignore`) and saves is as a zip file in `./nautus/backups/`|`nautus backup`|
+|changelog|`<user> <repo> <GITHUB_TOKEN> <outputFileName> <releaseTag> [sinceCommit][--help]`|Generates changelogs based on a GitHub repo. Take a look at [this](#generating-changelogs) for more help|`nautus changelog <user> <repo> <GITHUB_TOKEN> <outputFileName> <releaseTag> [sinceCommit]`|
+|create||Creates a nautus project|`nautus create`|
+|delete||Deletes a nautus project|`nautus delete`|
+|docs||Generates docs in markdown format based on jsdoc commands in your code. It walks you through a few questions first|`nautus docs`|
+|exec|`<script>`|Executes a [script](#using-scripts) using the specified script name|`nautus exec Run`|
+|ignore|`<path> <provider1> [provider2] [...]`|Adds a path to (multiple) ignore files|`nautus ignore *.log npm git`|
+|kelp|`<generatorName>`|Generates boilerplate code using a kelp generator. Use `nautus kelp` to list all generators|`nautus kelp npm`|
+|license||Walks you through a few questions to generate a LICENSE file for you|`nautus license`|
+|lint|`[--help] [--fix]`|Lints (& fixes) your code. Specify linters in the `./nautus/lint.yaml` file|`nautus lint --fix`|
+|me|`[--local]`|Provides nautus with information about you, so it can generate boilerplate accurate for you. Use the --local flag to only save in current project|`nautus me`|
+|release|`<major|minor|patch> [--help]`|Releases your code as defined in the `@Release.js` script|`nautus release minor`|
+|run|`[--help]`|Runs your code as defined in the `@Run.js` script. It will run the `@Prep.js` script first and the `@Cleanup.js` script afterwards|`nautus run`|
+|tank|`<tank> <cmd> [options]`|Makes it possible to seperate, refactor, and recompile only special parts of your code. Take a look at [tanks](#tanks) and [agents](#agents) if you need more information|`nautus tank --help`|
+|test|`[--help]`|Test your code as defined in the `@Test.js` script|`nautus test`|
+|use|`<framework>`|Like kelp, but only generates necessary code to make it compatible with nautus. Doesn't work with all generators|`nautus use npm`|
+
 
 # Tanks
 **If you want to lint, format or refactor parts of your code, you can use the nautus tank command:**
@@ -137,8 +160,11 @@ If you want to generate boilerplate code, you need to use kelp. If you wanted to
 
 
 # Generating changelogs
-
-# Using the API client
+If you want automatically generated changelogs based on your GitHub repo, nautus can do that for you. This command is made for automating, so it should be pretty easy to integrate it into a GitHub workflow. The usage of the command is `nautus changelog <user> <repo> <GITHUB_TOKEN> <outputFileName> <releaseTag> [sinceCommit]`. To make this work you need a Personal Access Token from GitHub. You can create one [here](https://github.com/settings/tokens/new?scopes=repo). Make sure the repo scope is granted. Keep in mind: This token will grant access to your GitHub repos, so make sure you trust the services you give it to. As nautus is open source, you might want to take a look at [greencoder001/nautus/main/bin/commands/changelog.js](https://raw.githubusercontent.com/greencoder001/nautus/main/bin/commands/changelog.js) to see how your token is used. After you created a token you cann pass it to the command, where `<outPutFileName>` is the markdown file name of the changelog and `<releaseTag>` is the version this changelog is for. `<user>` & `<repo>` should be pretty self-explanatory. `[sinceCommit]` isn't required and is only recommended if you just want to include data since a specific commit. Then you would provide a commit hash here. By default nautus will use data since the latest release. Here's an example command:
+```sh
+nautus changelog greencoder001 nautus MYGITHUBTOKEN123 changelog.md v1.0.0
+``` 
+This will generate a changelog file called `changelog.md` with the version `v1.0.0` for the repo `greencoder001/nautus`.
 
 # Regular Expression Script (RES)
 If you are working with tanks, you might need to refactor your code. To do that we use RES, which is a custom language to write replacements using regular expressions. If you want matching syntax highlighting choose `CoffeScript` in your editor. To create a new RES, create a file called `coolnamehere.res` in the `./nautus/refactor` directory. Here you can write your script like this:
