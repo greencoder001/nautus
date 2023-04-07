@@ -1,5 +1,5 @@
 /*
-This file is used to define what happens when you use 'nautus run'
+This file is used to define what happens when you use 'nautus release'
 You can write this script like every normal node.js app, but are also
 able to use special functions defined below:
 async cmd(command: string): Promise<[exitCode, stdout]> - Execute a command in the default shell and waits until completion. Returns [exitCode, stdout]

@@ -1,5 +1,8 @@
 /*
-This file is used to define what happens after you used 'nautus run'
+This file is used to define what happens when the agent runs. It uses the nautus script syntax (see: https://github.com/greencoder001/nautus#using-scripts)
+To learn more about agents take a look at https://github.com/greencoder001/nautus#agents
+Before this will work you might need to define it in agents.yaml
+
 You can write this script like every normal node.js app, but are also
 able to use special functions defined below:
 async cmd(command: string): Promise<[exitCode, stdout]> - Execute a command in the default shell and waits until completion. Returns [exitCode, stdout]
@@ -21,14 +24,8 @@ Over time we might add more (jsut check using info(modules)), but right now it's
 */
 
 module.exports = async (cmd, os, info, warn, error, exit, script, spawn, modules) => {
-    // This script will be run after the @Run.js script
-    /*
-        If you made some preparations before or your code leaves some unnecessary files,
-        you can clean them up here. An example would be:
 
-        await cmd('rm temp.txt')
-    */
+    // This is an agent, define commands to be run if the in
+    // agents.yaml specified tank content changes here!
 
-    /* PLEASE DON'T CHANGE METHOD NAMES, AS IT MIGHT BE REQUIRED BY RUNTIMES */
-    /* PLEASE DON'T DELETE OR MODIFY THIS COMMENT, IT WILL BE USED TO INJECT SCRIPTS BY KELP */
 }

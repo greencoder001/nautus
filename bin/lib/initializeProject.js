@@ -53,6 +53,24 @@ module.exports = async () => {
     fs.mkdirSync(path.join(dir, '.internal'))
     fs.mkdirSync(path.join(dir, 'refactor'))
     fs.mkdirSync(path.join(dir, 'backups'))
+    fs.mkdirSync(path.join(dir, 'agents'))
+    fs.writeFileSync(path.join(dir, 'agents', 'agents.yaml'), `# Here you can define your agents
+# If you want to read a full documentation about agents, look here: https://github.com/greencoder001/nautus#agents
+# Agents help you recompile specific parts of your code when needed
+# To create an agent create a file called @AgentName.js in this directory
+# You can write it like a nautus script (see: https://github.com/greencoder001/nautus#using-scripts)
+# If you want to have some boilerplate, you can use the nautus agent create commad
+# Here you can define which agent watches which tank, just take a look at the example
+# and add your code when needed\n` + YAML.stringify({
+        agents: {
+            DefaultAgent: {
+                watches: {
+                    tanks: [ 'main', 'defineOtherTanksHere' ]
+                }
+            }
+        }
+    }))
+    fs.copySync(path.join(__dirname, 'file-templates-agent.js'), path.join(dir, 'agents', '@DefaultAgent.js'))
     if (fs.existsSync(path.join(os.homedir(), '.nautusme'))) {
         fs.copyFileSync(path.join(os.homedir(), '.nautusme'), path.join(dir, '.internal', '.nautusme'))
     } else {

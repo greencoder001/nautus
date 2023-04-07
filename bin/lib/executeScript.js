@@ -4,9 +4,9 @@ const chalk = require('chalk')
 const shq = require('shell-quote')
 const { exec, spawn } = require('child_process')
 
-const runScript = async (scriptName, exitfunc = process.exit) => {
+const runScript = async (scriptName, exitfunc = process.exit, isAgent = false) => {
     if (typeof scriptName !== 'string') throw new TypeError('scriptName must be a string')
-    const scriptPath = path.join(process.cwd(), 'nautus', 'scripts', `@${scriptName}.js`)
+    const scriptPath = isAgent ? path.join(process.cwd(), 'nautus', 'agents', `@${scriptName}.js`) : path.join(process.cwd(), 'nautus', 'scripts', `@${scriptName}.js`)
     const script = require(scriptPath)
 
     const cmd = command => {

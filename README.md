@@ -24,6 +24,7 @@ We want to see nautus grow, so if you have a feature request just create a issue
 - [ ] Manage GitHub workflows
 - [X] Automatically detect used technologies & integrate them with nautus
 - [X] Create code backups
+- [X] Watch & recompile only parts of your code
 
 # Goals
 **Some things we'd like nautus to achieve:**
@@ -59,6 +60,9 @@ If you want to generate boilerplate code, use kelp. To list all available genera
 # Configuring nautus for your needs
 
 # Using scripts
+
+# Agents
+
 
 # Commands
 
