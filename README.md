@@ -52,7 +52,8 @@ To download nautus, make sure you have npm installed and run `npm i nautus -g`
 6. Learn about the [commands](#commands) & how to use them
 7. If not already done in step 4, [learn how to use & write scripts](#using-scripts) & [how to configure nautus for your needs](#configuring-nautus-for-your-needs)
 8. Learn how to use [tanks](#tanks)
-9. Learn how to [create your own boilerplate generators](#creating-a-boilerplate-generator-for-kelp)
+9. Learn how to use [agents](#agents)
+10. Learn how to [create your own boilerplate generators](#creating-a-boilerplate-generator-for-kelp)
 
 # Using kelp to generate boilerplate
 If you want to generate boilerplate code, use kelp. To list all available generators run `nautus kelp`. Now let's say you want to build a npm package. In that case you would need to pick the right generator, in this case *npm*. Then you run `nautus kelp npm` to start the generator. It will ask you a few question and automatically create boilerplate, install necessary dependencies & configure [scripts](#using-scripts) for you. If no other info provided, look into the files, write some code and use `nautus run` to execute everything. If you want to create your own kelp generator look [here](#creating-a-boilerplate-generator-for-kelp). If you can't find a suiting generator, it's because nautus doesn't have a big community. In that case you might want to use a tool like [Yeoman](https://yeoman.io/) instead. After that you need to [configure nautus manually](#configuring-nautus-for-your-needs)
@@ -62,7 +63,18 @@ If you want to generate boilerplate code, use kelp. To list all available genera
 # Using scripts
 
 # Agents
+If you are working on large projects, it it very possible that you want to recompile parts of your code while running your application, but don't want to recompile everything. To achieve this, nautus has a feature called agents. An agent is a [nautus script](#using-scripts) that runs in the background while your app is running. It watches for changes on a specific [tank](#tanks) and executes the script on change. Agents are saved in the `./nautus/agents` directory. There you'll see two files:
+1. The `agents.yaml` file
+2. The `@DefaultAgent.js` file
 
+The `agents.yaml` file contains all agents and their tanks. An agent will only be run if it's specified here.
+The `@DefaultAgent.js` file is a basic [script](#using-scripts) which will be run as an agent because it is saved in the agents directory. If you want to play around with agents, just edit this file, as it will be run for every change on the `main` tank.
+
+## Creating an agent
+You could create the files manually, but the easiest way is to run `nautus agent create MyAgentName`. This will create some boilerplate and automatically add the agent definition in the `agents.yaml` file. By default it will be run on changes on the main tank.
+
+## Running an agent
+All agents will be automatically run if you use `nautus run`, but if you only want to run a specific agent while you aren't using nautus run, you can use `nautus agent run MyAgentName`. This will keep the agent running until you press `CTRL + C`.
 
 # Commands
 
