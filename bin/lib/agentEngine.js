@@ -105,6 +105,65 @@ engine.runAll = async () => {
         agents.push(engine(name))
     }
 
+    const bgAgents = fs.readdirSync(path.join(process.cwd(), 'nautus', 'agents')).filter(f => f.startsWith('@') && (f.endsWith('.sh') || f.endsWith('.cmd') || f.endsWith('.bat')))
+    const bgAgentsWin = bgAgents.filter(f => f.endsWith('.bat') || f.endsWith('.cmd'))
+    const bgAgentsTux = bgAgents.filter(f => f.endsWith('.sh'))
+
+    for (const bgAgent of require('os').platform() === 'win32' ? bgAgentsWin : bgAgentsTux) {
+        // Check if stdout should be enabled
+        const printStdout = fs.readFileSync(path.join(process.cwd(), 'nautus', 'agents', bgAgent)).toString('utf8').includes('$NAUTUS_ENABLE_STDOUT')
+        const { spawn } = require('child_process')
+        if (require('os').platform() === 'win32') {
+            // Windows
+            const prcss = spawn('cmd.exe', ['/c', path.join(process.cwd(), 'nautus', 'agents', bgAgent)], {
+                shell: true,
+                env: process.env,
+                cwd: process.cwd()
+            })
+
+            if (printStdout) {
+                prcss.stdout.on('data', (data) => {
+                    process.stdout.write(data.toString())
+                })
+
+                prcss.stderr.on('data', (data) => {
+                    process.stderr.write(data.toString())
+                })
+
+                process.stdin.pipe(prcss.stdin)
+            }
+
+            prcss.on('exit', (code) => {
+                if (code === 0) return
+                console.log(chalk.red('Error: Background agent exited with code ' + code + '. Please add "echo $NAUTUS_ENABLE_STDOUT" to your agent to see the reason!'))
+            })
+        } else {
+            // Linux / MacOs
+            const prcss = spawn('sh', [path.join(process.cwd(), 'nautus', 'agents', bgAgent)], {
+                shell: true,
+                env: process.env,
+                cwd: process.cwd()
+            })
+
+            if (printStdout) {
+                prcss.stdout.on('data', (data) => {
+                    process.stdout.write(data.toString())
+                })
+
+                prcss.stderr.on('data', (data) => {
+                    process.stderr.write(data.toString())
+                })
+
+                process.stdin.pipe(prcss.stdin)
+            }
+
+            prcss.on('exit', (code) => {
+                if (code === 0) return
+                console.log(chalk.red('Error: Background agent exited with code ' + code + '. Please add "echo $NAUTUS_ENABLE_STDOUT" to your agent to see the reason!'))
+            })
+        }
+    }
+
     return await Promise.all(agents)
 }
 
