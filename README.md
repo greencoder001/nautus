@@ -17,11 +17,10 @@ We want to see nautus grow, so if you have a feature request just create a issue
 - [X] Format your code
 - [X] Refactor your code
 - [X] Manage .ignore files
-- [ ] Test APIs
+- [X] Test APIs
 - [X] Create docs
 - [X] Generate a license file
 - [X] Lint your code
-- [ ] Manage GitHub workflows
 - [X] Automatically detect used technologies & integrate them with nautus
 - [X] Create code backups
 - [X] Watch & recompile only parts of your code
@@ -138,6 +137,8 @@ If you want to generate boilerplate code, you need to use kelp. If you wanted to
 
 
 # Generating changelogs
+
+# Using the API client
 
 # Regular Expression Script (RES)
 If you are working with tanks, you might need to refactor your code. To do that we use RES, which is a custom language to write replacements using regular expressions. If you want matching syntax highlighting choose `CoffeScript` in your editor. To create a new RES, create a file called `coolnamehere.res` in the `./nautus/refactor` directory. Here you can write your script like this:
