@@ -173,7 +173,7 @@ module.exports = async (cmd, os, info, warn, error, exit, script, spawn, modules
 ```
 
 ## Help & Support with scripts
-As long as nautus is a small project with only few users (when you are reading this it is) I'll gladly provide you with support about anything (including scripts of course). If you contact me, I'll also write a script specialized for your needs. Just contact me on Discord (Green_Lab#0723) or send me a [E-Mail](mailto:greencoder001@outlook.com)
+As long as nautus is a small project with only few users (when you are reading this it is) I'll gladly provide you with support about anything (including scripts of course). If you contact me, I'll also write a script specialized for your needs. Just contact me on Discord (Green_Lab#1270) or send me a [E-Mail](mailto:greencoder001@outlook.com)
 
 # Agents
 If you are working on large projects, it it very possible that you want to recompile parts of your code while running your application, but don't want to recompile everything. To achieve this, nautus has a feature called agents. An agent is a [nautus script](#using-scripts) that runs in the background while your app is running. It watches for changes on a specific [tank](#tanks) and executes the script on change. Agents are saved in the `./nautus/agents` directory. There you'll see two files:
