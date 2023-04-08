@@ -12,7 +12,7 @@ async script(name: string): Promise<void> - Runs another script and returns afte
 async spawn(command: string, args: Array<string>): Promise<exitCode> - Executes a command and displays the output in the shell
 
 modules: A useful collection of some modules, because it's bad practice to use require
-Over time we might add more (jsut check using info(modules)), but right now it's:
+Over time we might add more (just check using info(modules)), but right now it's:
 - modules.fs
 - modules.fse
 - modules.path
