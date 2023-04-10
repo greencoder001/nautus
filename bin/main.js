@@ -26,5 +26,17 @@ const axios = require('axios')
         }
     }
 
+    if (cmd.startsWith('@hook/')) {
+        const hookName = cmd.substring(6)
+        try {
+            // deepcode ignore CodeInjection: We trust our users
+            await require('./hooks/' + hookName + '.js')()
+        } catch (err) {
+            console.log(chalk.yellow(`Warn: Hook ${hookName} not found!`))
+            console.log(err)
+        }
+        return
+    }
+
     console.log(chalk.red(`Error: Command ${cmd} not found. Use ${chalk.cyan('nautus help')} for a list of commands!`))
 })()

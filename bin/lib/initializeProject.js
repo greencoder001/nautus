@@ -59,7 +59,7 @@ module.exports = async () => {
 # Agents help you recompile specific parts of your code when needed
 # To create an agent create a file called @AgentName.js in this directory
 # You can write it like a nautus script (see: https://github.com/greencoder001/nautus#using-scripts)
-# If you want to have some boilerplate, you can use the nautus agent create commad
+# If you want to have some boilerplate, you can use the nautus agent create command
 # Here you can define which agent watches which tank, just take a look at the example
 # and add your code when needed\n` + YAML.stringify({
         agents: {
@@ -70,6 +70,7 @@ module.exports = async () => {
             }
         }
     }))
+    fs.writeFileSync(path.join(dir, '.internal', 'hook-rules.json'), JSON.stringify({}))
     fs.copySync(path.join(__dirname, 'file-templates-agent.js'), path.join(dir, 'agents', '@DefaultAgent.js'))
     if (fs.existsSync(path.join(os.homedir(), '.nautusme'))) {
         fs.copyFileSync(path.join(os.homedir(), '.nautusme'), path.join(dir, '.internal', '.nautusme'))
