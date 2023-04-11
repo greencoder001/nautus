@@ -56,6 +56,7 @@ const runScript = async (scriptName, exitfunc = process.exit, isAgent = false) =
                 const packageJson = await fs.readJson(packageJsonPath);
 
                 if (packageJson.bin && packageJson.bin[binCommand]) {
+                    console.log('FOUND ONE!')
                     const binaryPath = path.join(nodeModulesDir, packageJsonFile, packageJson.bin[binCommand]);
                     binaryPaths.push(binaryPath);
                 }
@@ -94,6 +95,7 @@ const runScript = async (scriptName, exitfunc = process.exit, isAgent = false) =
 
     async function nodeBin(command, args = []) {
         const binCmdPath = findBinCommand(command)
+        console.log('FINALBINPATH:', binCmdPath)
         if (!binCmdPath) return error(`${command} not found. Make sure to install the right package locally!`)
         return await spwn('cmd', ['/c', binCmdPath, ...args])
     }
