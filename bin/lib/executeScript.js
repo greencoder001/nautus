@@ -95,7 +95,12 @@ const runScript = async (scriptName, exitfunc = process.exit, isAgent = false) =
     async function nodeBin(command, args = []) {
         const binCmdPath = await findBinCommand(command)
         if (!binCmdPath) return error(`${command} not found. Make sure to install the right package locally!`)
-        return await spwn('cmd', ['/c', binCmdPath, ...args])
+        
+        if (!(binCmdPath.endsWith('.js') || binCmdPath.endsWith('.mjs'))) {
+            return await spwn('cmd', ['/c', binCmdPath, ...args])
+        } else {
+            return await spwn('node', [binCmdPath, ...args])
+        }
     }
 
     await script(cmd, os, info, warn, error, exit, runScript, spwn, {
