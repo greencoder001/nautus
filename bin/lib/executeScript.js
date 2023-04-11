@@ -67,7 +67,7 @@ const runScript = async (scriptName, exitfunc = process.exit, isAgent = false) =
 
     const exit = exitfunc
 
-    const spwn = (comd, args) => {
+    const spwn = (comd, args = [], silent = false) => {
         return new Promise((resolve, reject) => {
             const prcss = spawn(comd, args, {
                 cwd: process.cwd(),
@@ -75,10 +75,11 @@ const runScript = async (scriptName, exitfunc = process.exit, isAgent = false) =
                 shell: true
             })
 
-
-            prcss.stdout.on('data', (data) => {
-                process.stdout.write(data.toString())
-            })
+            if (!silent) {
+                prcss.stdout.on('data', (data) => {
+                    process.stdout.write(data.toString())
+                })
+            }
 
             prcss.stderr.on('data', (data) => {
                 process.stderr.write(data.toString())
@@ -92,14 +93,14 @@ const runScript = async (scriptName, exitfunc = process.exit, isAgent = false) =
         })
     }
 
-    async function nodeBin(command, args = []) {
+    async function nodeBin(command, args = [], silent = false) {
         const binCmdPath = await findBinCommand(command)
         if (!binCmdPath) return error(`${command} not found. Make sure to install the right package locally!`)
         
         if (!(binCmdPath.endsWith('.js') || binCmdPath.endsWith('.mjs'))) {
-            return await spwn('cmd', ['/c', binCmdPath, ...args])
+            return await spwn('cmd', ['/c', binCmdPath, ...args], silent)
         } else {
-            return await spwn('node', [binCmdPath, ...args])
+            return await spwn('node', [binCmdPath, ...args], silent)
         }
     }
 

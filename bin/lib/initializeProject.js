@@ -65,7 +65,7 @@ module.exports = async () => {
         agents: {
             DefaultAgent: {
                 watches: {
-                    tanks: [ 'main', 'defineOtherTanksHere' ]
+                    tanks: [ 'main' ]
                 }
             }
         }
