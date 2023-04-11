@@ -44,6 +44,27 @@ const runScript = async (scriptName, exitfunc = process.exit, isAgent = false) =
         exitfunc(1)
     }
 
+    async function findBinCommand(binCommand) {
+        const nodeModulesDir = path.join(process.cwd(), 'node_modules');
+        const packageJsonFiles = await fs.readdir(nodeModulesDir);
+
+        const binaryPaths = [];
+        for (const packageJsonFile of packageJsonFiles) {
+            const packageJsonPath = path.join(nodeModulesDir, packageJsonFile, 'package.json');
+
+            if (await fs.pathExists(packageJsonPath)) {
+                const packageJson = await fs.readJson(packageJsonPath);
+
+                if (packageJson.bin && packageJson.bin[binCommand]) {
+                    const binaryPath = path.join(nodeModulesDir, packageJsonFile, packageJson.bin[binCommand]);
+                    binaryPaths.push(binaryPath);
+                }
+            }
+        }
+
+        return binaryPaths[0];
+    }
+
     const exit = exitfunc
 
     const spwn = (comd, args) => {
@@ -71,13 +92,19 @@ const runScript = async (scriptName, exitfunc = process.exit, isAgent = false) =
         })
     }
 
+    async function nodeBin(command, args = []) {
+        const binCmdPath = findBinCommand(command)
+        if (!binCmdPath) return error(`${command} not found. Make sure to install the right package locally!`)
+        return await spwn('cmd', ['/c', binCmdPath, ...args])
+    }
+
     await script(cmd, os, info, warn, error, exit, runScript, spwn, {
         chalk,
         fse: fs,
         fs: require('fs'),
         path: path,
         axios: require('axios')
-    })
+    }, nodeBin)
 }
 
 module.exports = runScript

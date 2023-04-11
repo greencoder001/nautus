@@ -186,6 +186,7 @@ error(what: any): void - Displays an error in the console & exits with code 1
 exit(code: number = 0): void - Exits with a code (default: 0)
 async script(name: string): Promise<void> - Runs another script and returns after it has run. Define it by creating a @ScriptName.js file in this folder and run it by using await script('ScriptName'); You can share data between scripts using global
 async spawn(command: string, args: Array<string>): Promise<exitCode> - Executes a command and displays the output in the shell
+async nodeBin(command: string, args: Array<string>): Promise<exitCode> - Searches through your locally installed node modules and executes a binary. This can be useful when running pkg, tsc, vite, etc...
 
 modules: A useful collection of some modules, because it's bad practice to use require
 Over time we might add more (just check using info(modules)), but right now it's:
