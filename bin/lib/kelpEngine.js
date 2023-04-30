@@ -4,7 +4,6 @@ const axios = require('axios')
 const chalk = require('chalk')
 const os = require('os')
 const { exec } = require('child_process')
-const shq = require('shell-quote')
 
 const cmd = (cwd, command) => {
     return new Promise((resolve, reject) => {
@@ -21,7 +20,7 @@ const cmd = (cwd, command) => {
 const rcmd = (command) => {
     return new Promise((resolve, reject) => {
         if (typeof command !== 'string') throw new TypeError('command must be a string')
-        exec('cd ' + shq(process.cwd()) + ' && ' + command, (error, stdout, stderr) => {
+        exec('cd ' + process.cwd() + ' && ' + command, (error, stdout, stderr) => {
             if (error) {
                 return reject([error.code, (stdout || '') + (stderr || '')])
             }

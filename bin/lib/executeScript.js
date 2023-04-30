@@ -1,7 +1,6 @@
 const path = require('path')
 const fs = require('fs-extra')
 const chalk = require('chalk')
-const shq = require('shell-quote')
 const { exec, spawn } = require('child_process')
 const requireRuntime = require('require-runtime')
 
@@ -13,7 +12,7 @@ const runScript = async (scriptName, exitfunc = process.exit, isAgent = false) =
     const cmd = command => {
         return new Promise((resolve, reject) => {
             if (typeof command !== 'string') throw new TypeError('command must be a string')
-            exec('cd ' + shq(process.cwd()) + ' && ' + command, (error, stdout, stderr) => {
+            exec('cd ' + process.cwd() + ' && ' + command, (error, stdout, stderr) => {
                 if (error) {
                     return reject([error.code, (stdout || '') + (stderr || '')])
                 }
