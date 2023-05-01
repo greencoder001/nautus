@@ -226,7 +226,7 @@ All agents will be automatically run if you use `nautus run`, but if you only wa
 
 ## Background agents
 
-If you are using a framework which already has a watch command integrated, you migth want to use that because it is more efficient. To do that you can use background agents. They only get run once on the start of your program, but will be kept running until your main program exits. To create a background agent, create file named `@AgentName.sh` (on windows you should use `@AgentName.cmd` or `@AgentName.bat`). In most cases you want to create a `.sh` and a `.bat` agent. You **don't** have to define them in your `agents.yaml`, as they aren't specific to a tank. A practical use for background agents would be if you are using vite. In that case you could just create the file `@ViteWatch.js` in your `./nautus/agents` directory with the following content:
+If you are using a framework which already has a watch command integrated, you migth want to use that because it is more efficient. To do that you can use background agents. They only get run once on the start of your program, but will be kept running until your main program exits. To create a background agent, create file named `@AgentName.sh` (on windows you should use `@AgentName.cmd` or `@AgentName.bat`). In most cases you want to create a `.sh` and a `.bat` agent. You **don't** have to define them in your `agents.yaml`, as they aren't specific to a tank. A practical use for background agents would be if you are using vite. In that case you could just create the file `@ViteWatch.sh` in your `./nautus/agents` directory with the following content:
 
 ```sh
 vite build --watch
