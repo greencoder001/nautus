@@ -28,9 +28,6 @@ module.exports = () => {
         frameworks.push('npm')
     }
 
-    // Git
-    if (fs.existsSync(path.join(process.cwd(), '.git'))) frameworks.push('git')
-
     // HTML
     if (findFilesWithExtension(process.cwd(), 'html').length > 0 || findFilesWithExtension(process.cwd(), 'htm').length > 0) frameworks.push('html')
 
