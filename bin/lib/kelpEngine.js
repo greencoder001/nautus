@@ -157,7 +157,7 @@ module.exports = async (name, type = 'generator', isLocal = false) => {
         const folder = path.join(kelpDir, name)
         if (fs.existsSync(folder)) {
             // Generator available in cache
-            if (fs.existsSync(path.join(folder, 'package.json'))) {
+            if (fs.existsSync(path.join(folder, 'node_modules', `nautus-${name}`, 'package.json'))) {
                 const pkgJson = fs.readJSONSync(path.join(folder, 'package.json'))
                 if (pkgJson.version === latest) {
                     // Cached version up to date!
