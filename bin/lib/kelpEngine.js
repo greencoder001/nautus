@@ -46,7 +46,7 @@ module.exports = async (name, type = 'generator', isLocal = false) => {
         if (!fs.existsSync(name)) console.log(chalk.red(`Error: Can't find kelp generator "${name}". Make sure that the path is existent!`))
         
         fs.ensureDirSync(f)
-        fs.ensureDirSync(path.join('f', 'node_modules'))
+        fs.ensureDirSync(path.join(f, 'node_modules'))
         fs.copySync(name, path.join(f, 'node_modules', 'nautus-local'))
         fs.writeFileSync(path.join(f, '_helper.js'), `
         const fs = require('fs');
@@ -86,12 +86,14 @@ module.exports = async (name, type = 'generator', isLocal = false) => {
         dela = f
     } else {
         // Check if module exists
+        let latest = '-0.0.0'
         try {
             const res = await axios.get(`https://registry.npmjs.org/${encodeURIComponent(moduleName)}`)
             if (res.data && res.data.error) {
                 console.log(chalk.red(`Error: Can't find kelp generator "${name}". Make sure that the npm package "${moduleName}" exists!`))
                 return
             }
+            latest = res.data['dist-tags'].latest
         } catch {
             console.log(chalk.red(`Error: Can't find kelp generator "${name}". Make sure that the npm package "${moduleName}" exists!`))
             return
@@ -100,24 +102,24 @@ module.exports = async (name, type = 'generator', isLocal = false) => {
         const s = spinner('Installing generator').start({ color: 'cyan' })
 
         // Install module
-        const folder = path.join(kelpDir, name)
-        fs.removeSync(folder)
-        fs.ensureDirSync(folder)
-        const l1 = await cmd(folder, 'npm init -y')
-        if (l1[0] !== 0) {
-            console.log(chalk.red('Error while initializing: '))
-            console.log(l1[1])
-            return
-        }
-        const l2 = await cmd(folder, `npm i ${moduleName}`)
-        if (l2[0] !== 0) {
-            console.log(chalk.red('Error while installing: '))
-            console.log(l2[1])
-            return
-        }
+        async function doInstallSteps() {
+            fs.removeSync(folder)
+            fs.ensureDirSync(folder)
+            const l1 = await cmd(folder, 'npm init -y')
+            if (l1[0] !== 0) {
+                console.log(chalk.red('Error while initializing: '))
+                console.log(l1[1])
+                return
+            }
+            const l2 = await cmd(folder, `npm i ${moduleName}`)
+            if (l2[0] !== 0) {
+                console.log(chalk.red('Error while installing: '))
+                console.log(l2[1])
+                return
+            }
 
-        // Create helper
-        fs.writeFileSync(path.join(folder, 'index.js'), `
+            // Create helper
+            fs.writeFileSync(path.join(folder, 'index.js'), `
         const fs = require('fs');
         const path = require('path');
 
@@ -150,6 +152,24 @@ module.exports = async (name, type = 'generator', isLocal = false) => {
 
         nautusDirs.forEach(processDir);
         module.exports = require('${moduleName}');`)
+        }
+
+        const folder = path.join(kelpDir, name)
+        if (fs.existsSync(folder)) {
+            // Generator available in cache
+            if (fs.existsSync(path.join(folder, 'package.json'))) {
+                const pkgJson = fs.readJSONSync(path.join(folder, 'package.json'))
+                if (pkgJson.version === latest) {
+                    // Cached version up to date!
+                } else {
+                    await doInstallSteps()
+                }
+            } else {
+                await doInstallSteps()
+            }
+        } else {
+            await doInstallSteps()
+        }
         
         // Stop spinner
         s.success({ text: 'Successfully installed generator' })
