@@ -36,9 +36,8 @@ jobs:
       with:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
       if: ${{ success() }}
-    - name: Approve a PR
-      run: gh pr review --approve "$PR_URL"
+    - name: Merge the PR
+      run: gh pr merge ${{ github.event.pull_request.number }} --auto --squash --merge-message "Merged by workflow"
       env:
-        PR_URL: ${{ github.event.pull_request.html_url }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       if: ${{ success() }}
