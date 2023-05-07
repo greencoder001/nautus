@@ -39,7 +39,8 @@ function findFilesAndFoldersRecursive() {
     return result;
 }
 
-const mini = require('minimatch')
+const { minimatch } = require('minimatch')
+const mini = minimatch
 
 function engine ($path, include, exclude) {
     $path = $path.replace(/\\/g, '/')

@@ -35,7 +35,8 @@ const engine = async (agentName) => {
 
     // Watch
     const chokidar = require('chokidar')
-    const mini = require('minimatch')
+    const { minimatch } = require('minimatch')
+    const mini = minimatch
 
     function isPathInTank($path, tank) {
         const include = getIncluded(tank)
