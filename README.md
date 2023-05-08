@@ -55,15 +55,16 @@ To download nautus, make sure you have npm installed and run `npm i nautus -g`
 # Getting started
 
 1. Download nautus (see [above](#download))
-2. Switch to your project directory (it does't have to be empty)
-3. Create a new nautus project using `nautus create`
-4. Either [use a kelp boilerplate generator](#using-kelp-to-generate-boilerplate) or [start a project from scratch](#configuring-nautus-for-your-needs)
-5. Run your project using `nautus run`
-6. Learn about the [commands](#commands) & how to use them
-7. If not already done in step 4, [learn how to use & write scripts](#using-scripts) & [how to configure nautus for your needs](#configuring-nautus-for-your-needs)
-8. Learn how to use [tanks](#tanks)
-9. Learn how to use [agents](#agents)
-10. Learn how to [create your own boilerplate generators](#creating-a-boilerplate-generator-for-kelp)
+2. Use `nautus me` to provide nautus with some info about you
+3. Switch to your project directory (it does't have to be empty)
+4. Create a new nautus project using `nautus create`
+5. Either [use a kelp boilerplate generator](#using-kelp-to-generate-boilerplate) or [start a project from scratch](#configuring-nautus-for-your-needs)
+6. Run your project using `nautus run`
+7. Learn about the [commands](#commands) & how to use them
+8. If not already done in step 4, [learn how to use & write scripts](#using-scripts) & [how to configure nautus for your needs](#configuring-nautus-for-your-needs)
+9. Learn how to use [tanks](#tanks)
+10. Learn how to use [agents](#agents)
+11. Learn how to [create your own boilerplate generators](#creating-a-boilerplate-generator-for-kelp)
 
 # Using kelp to generate boilerplate
 
