@@ -12,4 +12,3 @@ updates:
     ignore:
       - dependency-name: "chalk"
         versions: [">=5.0.0"]
-        rationale: "Cannot upgrade to major version 5"
